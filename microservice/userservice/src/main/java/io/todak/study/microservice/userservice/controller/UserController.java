@@ -1,11 +1,13 @@
 package io.todak.study.microservice.userservice.controller;
 
-import io.todak.study.microservice.userservice.controller.dto.UserModel;
+import io.todak.study.microservice.userservice.controller.model.UserModel;
 import io.todak.study.microservice.userservice.mapper.UserMapper;
 import io.todak.study.microservice.userservice.service.UserService;
 import io.todak.study.microservice.userservice.service.dto.UserDto;
 import io.todak.study.microservice.userservice.vo.Greeting;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
@@ -27,13 +29,16 @@ public class UserController {
         return greeting.getMessage();
     }
 
-    @PostMapping
-    public String createUser(@RequestBody UserModel.Req.Create user) {
+    @PostMapping("/users")
+    public ResponseEntity<?> createUser(@RequestBody UserModel.Req.Create user) {
 
-        UserDto.Create create = userMapper.modelToDto(user);
-        UserDto.Create dto = userService.createUser(create);
+        UserDto.Create create = userMapper.convertToDto(user);
+        UserDto.Create userDto = userService.createUser(create);
 
-        return "Create user method is called";
+        UserModel.Res.Create response = userMapper.convertToModel(userDto);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(response);
     }
 
 
