@@ -5,6 +5,7 @@ import lombok.Getter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 public class UserDto {
@@ -19,17 +20,52 @@ public class UserDto {
         private LocalDateTime createdAt;
 
 
+        public void createUserId() {
+            this.userId = UUID.randomUUID().toString();
+        }
+
         public void encrpytPassword(PasswordEncoder passwordEncoder) {
             this.password = passwordEncoder.encode(this.password);
         }
 
         @Builder
-        public Create(String email, String name, String password) {
+        public Create(String email, String name, String password, String userId, LocalDateTime createdAt) {
             this.email = email;
             this.name = name;
             this.password = password;
-            this.userId = UUID.randomUUID().toString();
-            this.createdAt = LocalDateTime.now();
+            this.userId = userId;
+            this.createdAt = createdAt;
+        }
+    }
+
+    @Getter
+    public static class GetOne {
+        private String email;
+        private String name;
+        private String userId;
+
+        private List<OrderDto> orders;
+
+        @Builder
+        public GetOne(String email, String name, String userId, List<OrderDto> orders) {
+            this.email = email;
+            this.name = name;
+            this.userId = userId;
+            this.orders = orders;
+        }
+    }
+
+    @Getter
+    public static class GetList {
+        private String email;
+        private String name;
+        private String userId;
+
+        @Builder
+        public GetList(String email, String name, String userId) {
+            this.email = email;
+            this.name = name;
+            this.userId = userId;
         }
     }
 

@@ -1,4 +1,4 @@
-package io.todak.study.microservice.userservice.vo;
+package io.todak.study.microservice.userservice.controller.model;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;

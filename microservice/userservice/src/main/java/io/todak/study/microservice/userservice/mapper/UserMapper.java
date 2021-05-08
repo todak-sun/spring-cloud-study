@@ -13,14 +13,25 @@ public interface UserMapper {
 
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
-    UserDto.Create convertToDto(UserModel.Req.Create model);
+    UserDto.Create toDtoForCreate(User user);
+
+    UserDto.Create toDtoForCreate(UserModel.Req.Create model);
+
+    UserDto.GetList toDtoForList(User user);
+
+    UserDto.GetOne toDtoForGetOne(User user);
+
+    UserModel.Res.Create toModelForCreate(UserDto.Create dto);
+
+    UserModel.Res.GetList toModelForList(UserDto.GetList getList);
+
+    UserModel.Res.GetOne toModelForGetOne(UserDto.GetOne dto);
 
     @Mappings({
             @Mapping(target = "encryptedPassword", source = "dto.password")
     })
-    User convertToEntity(UserDto.Create dto);
+    User toEntity(UserDto.Create dto);
 
-    UserModel.Res.Create convertToModel(UserDto.Create dto);
 
-    UserDto.Create convertToDto(User user);
+
 }

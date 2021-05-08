@@ -39,6 +39,10 @@
             <optional>true</optional>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>${org.mapstruct.version}</version>
@@ -59,6 +63,9 @@
     <modules>
         <module>eureka</module>
         <module>userservice</module>
+        <module>gateway-service</module>
+        <module>catalog-service</module>
+        <module>order-service</module>
     </modules>
 
     <build>

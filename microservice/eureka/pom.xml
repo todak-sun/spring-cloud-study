@@ -7,7 +7,7 @@
         <artifactId>microservice</artifactId>
         <version>0.0.1</version>
     </parent>
-    <groupId>io.todak.study.microsoft</groupId>
+    <groupId>io.todak.study.microservice</groupId>
     <artifactId>eureka</artifactId>
     <version>0.0.1</version>
     <name>eureka</name>
@@ -33,14 +33,4 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-<!--    <build>-->
-<!--        <plugins>-->
-<!--            <plugin>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--            </plugin>-->
-<!--        </plugins>-->
-<!--    </build>-->
-
 </project>

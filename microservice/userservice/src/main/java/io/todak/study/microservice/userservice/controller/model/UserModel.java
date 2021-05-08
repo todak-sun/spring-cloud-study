@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 public class UserModel {
 
@@ -42,6 +43,38 @@ public class UserModel {
                 this.name = name;
             }
         }
+
+        @Getter
+        public static class GetOne {
+            private String email;
+            private String name;
+            private String userId;
+
+            private List<OrderModel> orders;
+
+            @Builder
+            public GetOne(String email, String name, String userId, List<OrderModel> orders) {
+                this.email = email;
+                this.name = name;
+                this.userId = userId;
+                this.orders = orders;
+            }
+        }
+
+        @Getter
+        public static class GetList {
+            private String email;
+            private String name;
+            private String userId;
+
+            @Builder
+            public GetList(String email, String name, String userId) {
+                this.email = email;
+                this.name = name;
+                this.userId = userId;
+            }
+        }
+
     }
 
 
