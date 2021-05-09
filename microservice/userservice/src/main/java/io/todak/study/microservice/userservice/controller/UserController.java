@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/user-service")
 public class UserController {
 
 

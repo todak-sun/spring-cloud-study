@@ -1,6 +1,7 @@
 package io.todak.study.microservice.orderservice.entities;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
@@ -40,4 +41,14 @@ public class Order {
     @ColumnDefault(value = "CURRENT_TIMESTAMP")
     private LocalDateTime createdAt;
 
+    @Builder
+    public Order(String productId, Integer quantity, Integer unitPrice, Integer totalPrice, String userId, String orderId, LocalDateTime createdAt) {
+        this.productId = productId;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
+        this.totalPrice = totalPrice;
+        this.userId = userId;
+        this.orderId = orderId;
+        this.createdAt = createdAt;
+    }
 }
