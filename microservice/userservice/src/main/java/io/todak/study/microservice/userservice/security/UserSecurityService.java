@@ -23,8 +23,9 @@ public class UserSecurityService implements UserDetailsService {
                     throw new UsernameNotFoundException(email);
                 });
 
-        return new org.springframework.security.core.userdetails.User(
+        return new AuthenticatedUser(
                 user.getEmail(),
+                user.getUserId(),
                 user.getEncryptedPassword(),
                 true,
                 true,

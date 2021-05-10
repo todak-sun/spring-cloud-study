@@ -1,5 +1,6 @@
 package io.todak.study.microservice.userservice.security;
 
+import io.todak.study.microservice.userservice.config.TokenProperty;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +18,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     private final UserSecurityService userSecurityService;
     private final PasswordEncoder passwordEncoder;
+    private final TokenProperty tokenProperty;
 
     // 인증에 대한 정의
     @Override
@@ -41,8 +43,11 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
 
     private AuthenticationFilter authenticationFilter() throws Exception {
-        AuthenticationFilter authenticationFilter = new AuthenticationFilter();
-        authenticationFilter.setAuthenticationManager(authenticationManager());
+        AuthenticationFilter authenticationFilter = new AuthenticationFilter(
+                authenticationManager(),
+                userSecurityService,
+                tokenProperty);
+
         return authenticationFilter;
     }
 
