@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
+import org.springframework.core.env.Environment;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
@@ -14,7 +15,7 @@ import reactor.core.publisher.Mono;
 @Component
 public class GlobalFilter extends AbstractGatewayFilterFactory<GlobalFilter.Config> {
 
-    public GlobalFilter() {
+    public GlobalFilter(Environment env) {
         super(Config.class);
     }
 

@@ -34,12 +34,14 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 
         http.authorizeRequests()
-                .antMatchers("/health_check")
-                .permitAll()
-                .antMatchers("/**")
+                .antMatchers("/health_check", "/actuator/**")
+                .permitAll();
+
+        http.authorizeRequests().antMatchers("/**")
                 .hasIpAddress("172.28.144.1")
                 .and()
                 .addFilter(authenticationFilter());
+
         http.headers().frameOptions().disable();
     }
 
