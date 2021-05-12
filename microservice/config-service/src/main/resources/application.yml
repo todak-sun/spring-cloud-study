@@ -4,9 +4,25 @@ server:
 spring:
   application:
     name: config-service
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+  profiles:
+    active: native
   cloud:
     config:
       server:
+        native:
+          search-locations: 'D:\workspace\github\git-local-repo'
         git:
-          uri: 'D:\workspace\github\git-local-repo'
+          # uri: 'D:\workspace\github\git-local-repo'
           default-label: main
+          uri: https://github.com/todak-sun/spring-cloud-config-repo
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, busrefresh
