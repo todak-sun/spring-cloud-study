@@ -1,0 +1,6 @@
+encrypt:
+  #  key: dijf89k123jgoaksnmdfjdoifjau3u4
+  key-store:
+    location: file:///D:\\workspace\github\git-local-repo\keystore\apiEncryptionKey.jks
+    password: test1234
+    alias: apiEncryptionKey

@@ -163,4 +163,8 @@ class UserMapperTest {
                 .build();
     }
 
+    private void tetetst(){
+
+    }
+
 }
