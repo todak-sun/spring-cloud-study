@@ -4,26 +4,20 @@ server:
 spring:
   application:
     name: user-service
-#  rabbitmq:
-#    host: 127.0.0.1
-#    port: 5672
-#    username: guest
-#    password: guest
+  #  rabbitmq:
+  #    host: 127.0.0.1
+  #    port: 5672
+  #    username: guest
+  #    password: guest
   h2:
     console:
       enabled: true
       settings:
         web-allow-others: true
       path: /h2-console
-#  datasource:
-#    username: sa
-#    password:
-#    driver-class-name: org.h2.Driver
-#    url: jdbc:h2:mem:testdb
   jpa:
     hibernate:
       ddl-auto: create
-
 
 eureka:
   instance:
@@ -43,3 +37,7 @@ management:
     web:
       exposure:
         include: refresh,health,beans,info,busrefresh
+
+logging:
+  level:
+    io.todak.study.microservice.client: debug

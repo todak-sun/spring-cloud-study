@@ -2,9 +2,11 @@ package io.todak.study.microservice.userservice.service.dto;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -40,18 +42,19 @@ public class UserDto {
 
     @Getter
     public static class GetOne {
-        private String email;
-        private String name;
-        private String userId;
+        private final String email;
+        private final String name;
+        private final String userId;
 
+        @Setter
         private List<OrderDto> orders;
 
         @Builder
-        public GetOne(String email, String name, String userId, List<OrderDto> orders) {
+        public GetOne(String email, String name, String userId) {
             this.email = email;
             this.name = name;
             this.userId = userId;
-            this.orders = orders;
+            this.orders = new ArrayList<>();
         }
     }
 
