@@ -40,4 +40,4 @@ management:
 
 logging:
   level:
-    io.todak.study.microservice.client: debug
+    io.todak.study.microservice.userservice.client: debug

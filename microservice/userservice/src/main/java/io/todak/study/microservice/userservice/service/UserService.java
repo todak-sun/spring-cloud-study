@@ -1,11 +1,13 @@
 package io.todak.study.microservice.userservice.service;
 
+import feign.FeignException;
 import io.todak.study.microservice.userservice.client.OrderServiceClient;
 import io.todak.study.microservice.userservice.entity.User;
 import io.todak.study.microservice.userservice.mapper.UserMapper;
 import io.todak.study.microservice.userservice.repository.UserRepository;
 import io.todak.study.microservice.userservice.service.dto.OrderDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
@@ -15,11 +17,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static io.todak.study.microservice.userservice.service.dto.UserDto.*;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class UserService {
@@ -27,6 +31,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper = UserMapper.INSTANCE;
     private final PasswordEncoder passwordEncoder;
+
     private final OrderServiceClient orderServiceClient;
 //    private final Environment env;
 //    private final RestTemplate restTemplate;
@@ -60,7 +65,13 @@ public class UserService {
 //                    getOne.setOrders(orders);
                     // Using as RestTemplate
 
+
                     List<OrderDto> orders = orderServiceClient.getOrders(userId);
+//                    try {
+//                        orders = orderServiceClient.getOrders(userId);
+//                    } catch (FeignException e){
+//                        log.error("error : {}", e.getMessage());
+//                    }
                     getOne.setOrders(orders);
                     return getOne;
                 })
