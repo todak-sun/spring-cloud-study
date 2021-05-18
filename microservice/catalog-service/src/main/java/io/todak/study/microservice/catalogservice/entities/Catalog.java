@@ -30,4 +30,13 @@ public class Catalog {
     @Column(nullable = false, updatable = false, insertable = false)
     @ColumnDefault(value = "CURRENT_TIMESTAMP")
     private LocalDateTime createdAt;
+
+    public int reduceStock(int amount) {
+        int changedStock = stock - amount;
+        if (changedStock < 0) {
+            throw new RuntimeException("더 이상 수량을 줄일 수 없습니다.");
+        }
+        this.stock = changedStock;
+        return this.stock;
+    }
 }
