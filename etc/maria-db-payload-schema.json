@@ -1,0 +1,41 @@
+{
+  "schema": {
+    "type": "struct",
+    "fields": [
+      {
+        "type": "int64",
+        "optional": false,
+        "field": "id"
+      },
+      {
+        "type": "string",
+        "optional": false,
+        "field": "email"
+      },
+      {
+        "type": "string",
+        "optional": false,
+        "field": "name"
+      },
+      {
+        "type": "string",
+        "optional": false,
+        "field": "uuid"
+      },
+      {
+        "type": "string",
+        "optional": false,
+        "field": "password"
+      }
+    ],
+    "optional": false,
+    "name": "users"
+  },
+  "payload": {
+    "id": 12,
+    "email": "direct",
+    "name": "yjsun222",
+    "uuid": "uuid233",
+    "password": "pas24123sword2"
+  }
+}
