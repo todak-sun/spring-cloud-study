@@ -39,9 +39,7 @@ public class KafkaConsumer {
         Integer quantity = (Integer) map.get("quantity");
 
         catalogRepository.findByProductId(productId)
-                .ifPresent(catalog -> {
-                    catalog.reduceStock(quantity);
-                });
+                .ifPresent(catalog -> catalog.reduceStock(quantity));
     }
 
 }

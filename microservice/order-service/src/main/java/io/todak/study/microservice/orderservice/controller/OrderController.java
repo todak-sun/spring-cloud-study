@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import producer.KafkaProducer;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 public class OrderController {
 
     private final OrderService orderService;
+    private final KafkaProducer kafkaProducer;
     private final OrderMapper orderMapper = OrderMapper.INSTANCE;
 
     @PostMapping("{userId}/orders")
@@ -27,10 +29,10 @@ public class OrderController {
 
         OrderDto.Create dto = orderMapper.toDtoForCreate(orderDetails);
         dto.orderedBy(userId);
-
         OrderDto.GetOne order = orderService.createOrder(dto);
-
         OrderModel.Res.Create response = orderMapper.toModelForCreate(order);
+
+        kafkaProducer.send("example-catalog-topic", order);
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(response);
