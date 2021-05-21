@@ -2,6 +2,7 @@ package io.todak.study.microservice.orderservice.service.dto;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.util.UUID;
 
@@ -38,6 +39,7 @@ public class OrderDto {
         }
     }
 
+    @ToString
     @Getter
     public static class GetOne {
         private String productId;

@@ -6,14 +6,16 @@ import io.todak.study.microservice.orderservice.mapper.OrderMapper;
 import io.todak.study.microservice.orderservice.service.OrderService;
 import io.todak.study.microservice.orderservice.service.dto.OrderDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import producer.KafkaProducer;
+import io.todak.study.microservice.orderservice.producer.KafkaProducer;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 public class OrderController {

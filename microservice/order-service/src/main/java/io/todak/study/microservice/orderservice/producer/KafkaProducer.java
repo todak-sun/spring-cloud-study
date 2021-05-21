@@ -1,4 +1,4 @@
-package producer;
+package io.todak.study.microservice.orderservice.producer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,6 +16,7 @@ public class KafkaProducer {
     private final KafkaTemplate<String, String> kafkaTemplate;
 
     public OrderDto.GetOne send(String topic, OrderDto.GetOne orderDto) {
+        log.info(">>>>>>>>>>>>>>>>>> kafka send : {}", orderDto);
         ObjectMapper mapper = new ObjectMapper();
         String jsonString = "";
         try {
@@ -25,7 +26,7 @@ public class KafkaProducer {
         }
 
         kafkaTemplate.send(topic, jsonString);
-        log.info("Kafka Producer sent data from the Order microservice : {}", orderDto);
+        log.info("Kafka Producer sent data from the Order microservice : {}", jsonString);
         return orderDto;
     }
 

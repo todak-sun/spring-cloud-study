@@ -15,11 +15,12 @@ spring:
       ddl-auto: create-drop
     show-sql: true
     generate-ddl: true
-#  datasource:
-#    driver-class-name: org.h2.Driver
-#    hikari:
-#      jdbc-url: jdbc:h2:tcp://localhost/~/spring-cloud
+  datasource:
     initialization-mode: always
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+    url: jdbc:h2:mem:testdb
 
 eureka:
   instance:
