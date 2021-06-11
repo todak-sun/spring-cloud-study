@@ -12,6 +12,7 @@ public interface OrderMapper {
     OrderMapper INSTANCE = Mappers.getMapper(OrderMapper.class);
 
     Order toEntityForCreate(OrderDto.Create dto);
+    OrderDto.GetOne toDtoForGetOne(OrderDto.Create dto);
     OrderDto.GetOne toDtoForGetOne(Order entity);
     OrderDto.Create toDtoForCreate(OrderModel.Req.Create model);
     OrderModel.Res.Create toModelForCreate(OrderDto.GetOne dto);

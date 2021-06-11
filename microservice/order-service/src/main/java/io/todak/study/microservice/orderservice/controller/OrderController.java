@@ -29,12 +29,21 @@ public class OrderController {
             @PathVariable String userId,
             @RequestBody OrderModel.Req.Create orderDetails) {
 
+
         OrderDto.Create dto = orderMapper.toDtoForCreate(orderDetails);
         dto.orderedBy(userId);
-        OrderDto.GetOne order = orderService.createOrder(dto);
-        OrderModel.Res.Create response = orderMapper.toModelForCreate(order);
+
+        /* jpa */
+//        OrderDto.GetOne order = orderService.createOrder(dto);
+//        OrderModel.Res.Create response = orderMapper.toModelForCreate(order);
+
+        /* kafka */
+        dto.createOrderId();
+        dto.calcTotalPrice();
+        OrderDto.GetOne order = orderMapper.toDtoForGetOne(dto);
 
         kafkaProducer.send("example-catalog-topic", order);
+        OrderModel.Res.Create response = orderMapper.toModelForCreate(order);
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(response);
